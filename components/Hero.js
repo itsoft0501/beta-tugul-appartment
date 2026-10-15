@@ -12,8 +12,7 @@ export default function Hero() {
           <span className="eyebrow reveal">Өвөрхангай аймаг · Арвайхээр</span>
           <h2 className="hero-title reveal">
             <span className="line"><span>Арвайхээрт</span></span>
-            <span className="line"><span><em>тав тухтай</em></span></span>
-            <span className="line"><span>шинэ гэр</span></span>
+            <span className="line"><span><em>тав тухтай</em> шинэ гэр</span></span>
           </h2>
           <p className="lead reveal d2"><b>Төгөл Апартмент</b> — тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер оролцуулах боломжтой.</p>
           <div className="cta reveal d2">
