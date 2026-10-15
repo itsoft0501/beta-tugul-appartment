@@ -9,27 +9,27 @@ export default function Hero() {
       <div className="blob b2" aria-hidden="true" />
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow reveal in">Өвөрхангай аймаг · Арвайхээр</span>
-          <h1>
+          <span className="eyebrow reveal">Өвөрхангай аймаг · Арвайхээр</span>
+          <h2 className="hero-title reveal">
             <span className="line"><span>Арвайхээрт</span></span>
             <span className="line"><span><em>тав тухтай</em></span></span>
             <span className="line"><span>шинэ гэр</span></span>
-          </h1>
-          <p className="lead reveal in d2"><b>Төгөл Апартмент</b> — тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер оролцуулах боломжтой.</p>
-          <div className="cta reveal in d2">
+          </h2>
+          <p className="lead reveal d2"><b>Төгөл Апартмент</b> — тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер оролцуулах боломжтой.</p>
+          <div className="cta reveal d2">
             <a className="btn btn-primary" href={`tel:${PHONE}`}><Icon id="i-phone" />Захиалга өгөх</a>
             <a className="btn btn-ghost" href="#plans">Байрнууд үзэх<Icon id="i-arrow" /></a>
           </div>
-          <dl className="hero-stats reveal in d3">
+          <dl className="hero-stats reveal d3">
             <div><dt><span className="count" data-to="50">50</span></dt><dd>айлын орон сууц</dd></div>
             <div><dt><span className="count" data-to="30">30</span>%</dt><dd>урьдчилгаа</dd></div>
             <div><dt>46–79</dt><dd>м² талбай</dd></div>
           </dl>
         </div>
-        <div className="hero-visual">
+        <div className="hero-visual reveal">
           <div className="hv-main">
             <div className="px" data-parallax="0.08">
-              <img src="/img/hero.jpg" alt="Төгөл Апартмент барилгын гадна төрх" fetchPriority="high" />
+              <img src="/img/hero.jpg" alt="Төгөл Апартмент барилгын гадна төрх" loading="lazy" />
             </div>
           </div>
           <a className="hv-ring" href="#plans" aria-label="Байрнууд үзэх">
