@@ -33,7 +33,25 @@ export default function Reveal() {
       { threshold: 0.15 }
     );
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // Gentle scroll parallax for [data-parallax="<speed>"] elements.
+    const layers = reduce ? [] : [...document.querySelectorAll('[data-parallax]')];
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        layers.forEach((el) => {
+          el.style.transform = `translate3d(0, ${window.scrollY * +el.dataset.parallax}px, 0)`;
+        });
+      });
+    };
+    if (layers.length) window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   return null;

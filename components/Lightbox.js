@@ -64,7 +64,7 @@ export function LightboxProvider({ children }) {
 export const useLightbox = () => useContext(LightboxContext);
 
 // Clickable/keyboard-focusable wrapper that opens `src` in the lightbox.
-export function Zoomable({ as: Tag = 'div', src, label = 'Зургийг томруулах', className, children }) {
+export function Zoomable({ as: Tag = 'div', src, label = 'Зургийг томруулах', className, children, ...rest }) {
   const open = useLightbox();
   return (
     <Tag
@@ -73,6 +73,7 @@ export function Zoomable({ as: Tag = 'div', src, label = 'Зургийг том�
       tabIndex={0}
       aria-label={label}
       onClick={() => open(src)}
+      {...rest}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
