@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Төгөл Апартмент — Арвайхээр</title>
+<meta name="description" content="Төгөл апартмент — Арвайхээр хотын А бүсэд. Тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер боломжтой.">
+<meta name="theme-color" content="#0b0d0c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Төгөл Апартмент">
+<meta property="og:title" content="Төгөл Апартмент — Арвайхээр">
+<meta property="og:description" content="Арвайхээр хотын А бүсэд 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер боломжтой. Утас: 99928898, 95897513">
+<meta property="og:url" content="https://tugulappartment.netlify.app/">
+<meta property="og:image" content="https://tugulappartment.netlify.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tugulappartment.netlify.app/og-image.jpg">
+<link rel="icon" href="favicon.ico">
+<link rel="preload" as="image" href="img/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d0c; --bg2:#101412; --card:#151a17; --card2:#1c231f;
+  --text:#f4f1ea; --muted:#9ba49e; --dim:#6b746e;
+  --amber:#ffb24d; --orange:#ff7a2f; --glow:rgba(255,140,50,.35);
+  --grad:linear-gradient(120deg,#ffd27a 0%,#ffb24d 35%,#ff7a2f 100%);
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --r:28px;
+  --display:Unbounded,"Arial Black",system-ui,sans-serif;
+  --sans:Onest,system-ui,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1240px,100%);margin-inline:auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
+.ic{flex:none;width:18px;height:18px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;letter-spacing:-.025em}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:8px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:80;background:var(--grad);transform-origin:0 50%;transform:scaleX(0)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+.btn-amber{background:var(--grad);color:#1a0e04;box-shadow:0 10px 40px -10px var(--glow)}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 18px 50px -10px rgba(255,140,50,.6)}
+.btn-glass{background:rgba(255,255,255,.06);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-glass:hover{background:rgba(255,255,255,.12)}
+.btn .arrow{display:grid;place-items:center;width:32px;height:32px;margin-right:-14px;border-radius:50%;background:rgba(0,0,0,.15)}
+
+/* section shared */
+section{padding:clamp(80px,11vw,140px) 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid var(--line2);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head h2{font-size:clamp(32px,5vw,64px);margin-top:20px;max-width:820px}
+.sec-head p{color:var(--muted);max-width:420px;font-size:17px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ---------- header ---------- */
+header{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:0;right:0;z-index:60;pointer-events:none}
+.nav{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;padding:0 8px 0 22px;border-radius:999px;border:1px solid transparent;transition:background .35s,border-color .35s,box-shadow .35s}
+header.solid .nav{background:rgba(16,20,18,.72);border-color:var(--line);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.04em}
+.logo-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#1a0e04;font-size:16px}
+.logo small{display:block;font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:.42em;color:var(--muted);margin-top:2px}
+.menu{display:flex;gap:6px;list-style:none;font-size:14px;font-weight:500;color:var(--muted)}
+.menu a{display:block;padding:9px 16px;border-radius:999px;transition:background .2s,color .2s}
+.menu a:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.nav-cta{height:48px;padding:0 20px;font-size:14px}
+.burger{display:none;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.08);place-items:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+body.menu-open .burger span{background:transparent}
+body.menu-open .burger span::before{top:0;transform:rotate(45deg)}
+body.menu-open .burger span::after{top:0;transform:rotate(-45deg)}
+@media(max-width:960px){
+  .menu{position:fixed;top:calc(88px + env(safe-area-inset-top,0px));left:12px;right:12px;flex-direction:column;gap:2px;padding:10px;border-radius:24px;background:rgba(16,20,18,.96);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font-size:20px;font-family:var(--display);font-weight:600;color:var(--text);transform:translateY(-10px) scale(.98);opacity:0;visibility:hidden;transition:.3s}
+  .menu a{padding:16px 18px;border-radius:16px}
+  body.menu-open .menu{transform:none;opacity:1;visibility:visible}
+  body.menu-open .nav{background:rgba(16,20,18,.92);border-color:var(--line)}
+  .burger{display:grid}
+  .nav-cta{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 48px;overflow:hidden;isolation:isolate}
+.hero-photo{position:absolute;top:0;right:0;bottom:0;width:min(62%,960px);z-index:-1}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 38%);mask-image:linear-gradient(90deg,transparent 0%,#000 38%);transform:scale(1.08);animation:heroin 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes heroin{to{transform:scale(1)}}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,12,.35),transparent 30%,transparent 60%,var(--bg))}
+.hero-glow{position:absolute;z-index:-2;width:900px;height:900px;right:-200px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,50,.28),transparent 60%);filter:blur(20px)}
+.hero-inner{position:relative;width:100%}
+.hero h1{font-size:clamp(58px,15vw,220px);font-weight:800;line-height:.86;letter-spacing:-.05em;margin:26px 0 0}
+.hero h1 .l2{display:block;font-size:.34em;letter-spacing:.02em;font-weight:600;margin-top:.35em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.75)}
+.hero-row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-top:40px}
+.lead{max-width:470px;font-size:clamp(17px,1.5vw,19px);color:#cfd5d1}
+.lead b{color:var(--text);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.glass-stack{display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.glass{display:flex;align-items:center;gap:16px;padding:16px 22px 16px 16px;border-radius:22px;background:rgba(20,24,22,.55);border:1px solid var(--line2);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);min-width:260px}
+.glass .gi{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--grad);color:#1a0e04;font-family:var(--display);font-weight:800;font-size:17px}
+.glass b{display:block;font-family:var(--display);font-size:18px;font-weight:700}
+.glass span{font-size:13px;color:var(--muted)}
+.scroll-hint{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:26px;height:42px;border-radius:999px;border:1.5px solid var(--line2)}
+.scroll-hint::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:4px;background:var(--amber);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+@media(max-width:900px){
+  .hero{align-items:flex-end;padding-top:120px}
+  .hero-photo{width:100%;height:72%;bottom:auto}
+  .hero-photo img{-webkit-mask-image:none;mask-image:none}
+  .hero-photo::after{background:linear-gradient(180deg,rgba(11,13,12,.5),rgba(11,13,12,.15) 30%,rgba(11,13,12,.75) 70%,var(--bg))}
+  .hero-row{grid-template-columns:1fr}
+  .glass-stack{flex-direction:row;flex-wrap:wrap;align-items:stretch}
+  .glass{min-width:0;flex:1 1 220px}
+  .scroll-hint{display:none}
+}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;background:var(--grad);color:#1a0e04;padding:18px 0;transform:rotate(-1.2deg);margin:10px -10px 0;box-shadow:0 20px 60px -20px var(--glow)}
+.marquee-track{display:flex;width:max-content;animation:marq 32s linear infinite}
+.marquee span{display:flex;align-items:center;gap:28px;padding-right:28px;font-family:var(--display);font-weight:700;font-size:clamp(16px,2vw,22px);letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.marquee span::after{content:"✦";font-size:.8em}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+.tile{position:relative;overflow:hidden;border-radius:var(--r);background:var(--card);border:1px solid var(--line);padding:30px;transition:transform .4s,border-color .4s}
+.tile:hover{border-color:var(--line2)}
+.t-img{grid-column:span 5;grid-row:span 2;padding:0;cursor:zoom-in}
+.t-wide{grid-column:span 7/span 7;grid-row:auto;aspect-ratio:16/10}
+.t-wide img{object-position:center 45%}
+.t-list{grid-column:span 5;display:flex;flex-direction:column;gap:22px}
+.t-list ul{list-style:none;display:flex;flex-direction:column}
+.t-list li{display:grid;grid-template-columns:28px 1fr;column-gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.t-list li::before{content:"✓";grid-row:span 2;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(255,160,70,.14);color:var(--amber);font-size:13px;font-weight:700}
+.t-list li b{font-weight:600}
+.t-list li span{font-size:14px;color:var(--muted)}
+.t-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.t-img:hover img{transform:scale(1.05)}
+.t-img .t-cap{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 14px 20px;border-radius:18px;background:rgba(15,18,16,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line2);font-weight:600;font-size:14px}
+.zoom-dot{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1)}
+.t-stat{grid-column:span 7/span 7;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.t-stat.big{background:radial-gradient(500px 260px at 100% 0%,rgba(255,140,50,.22),transparent 70%),var(--card)}
+.t-stat .num{font-family:var(--display);font-weight:800;font-size:clamp(64px,9vw,128px);line-height:.9;letter-spacing:-.05em}
+.t-stat .lbl{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;color:var(--muted)}
+.t-stat .lbl b{display:block;font-family:var(--display);font-size:20px;color:var(--text);font-weight:600;margin-bottom:4px}
+.t-half{grid-column:span 7/span 7;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0;background:none;border:0}
+.t-half .tile{display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.mini-num{font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,62px);line-height:1;letter-spacing:-.04em}
+.mini-lbl{color:var(--muted);font-size:14px}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:13px;font-weight:500;color:#d7dcd8}
+.pill.hot{background:rgba(255,160,70,.12);border-color:rgba(255,160,70,.35);color:var(--amber)}
+@media(max-width:960px){
+  .t-img{grid-column:1/-1;grid-row:auto;aspect-ratio:1/1}
+  .t-wide{aspect-ratio:16/12}
+  .t-stat,.t-half,.t-list{grid-column:1/-1}
+}
+@media(max-width:520px){.t-half{grid-template-columns:1fr}.tile{padding:24px}.t-stat .lbl{flex-direction:column;align-items:flex-start}}
+
+/* ---------- quality ---------- */
+.q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.q{position:relative;padding:34px 30px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .4s,border-color .4s}
+.q::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
+.q:hover{transform:translateY(-6px)}
+.q:hover::before{opacity:1}
+.q-n{position:absolute;right:22px;top:14px;font-family:var(--display);font-weight:800;font-size:80px;line-height:1;color:rgba(255,255,255,.04)}
+.q-ic{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:rgba(255,160,70,.1);color:var(--amber);margin-bottom:56px}
+.q-ic svg{width:28px;height:28px}
+.q h3{font-size:21px;line-height:1.25;margin-bottom:12px;letter-spacing:-.01em}
+.q p{color:var(--muted);font-size:15px}
+.quote{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:34px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.quote b{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.quote p{color:var(--muted)}
+.quote .qm{font-family:var(--display);font-size:90px;line-height:.6;color:var(--amber)}
+@media(max-width:960px){.q-grid{grid-template-columns:1fr}.quote{grid-template-columns:1fr;gap:12px}}
+
+/* ---------- plans (configurator) ---------- */
+.plans-sec{background:var(--bg2);border-block:1px solid var(--line)}
+.filters{display:inline-flex;padding:5px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.filter{height:44px;padding:0 18px;border-radius:999px;font-size:14px;font-weight:600;color:var(--muted);transition:.25s}
+.filter.active{background:var(--text);color:var(--bg)}
+.filter:not(.active):hover{color:var(--text)}
+.config{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+.unit-list{display:flex;flex-direction:column;gap:10px;position:sticky;top:100px}
+.unit{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:14px;width:100%;padding:12px 18px 12px 12px;border-radius:20px;background:var(--card);border:1px solid var(--line);text-align:left;transition:background .25s,border-color .25s,transform .25s}
+.unit:hover{border-color:var(--line2);transform:translateX(4px)}
+.unit .ul{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,.06);font-family:var(--display);font-weight:800;font-size:20px;transition:.25s}
+.unit small{display:block;font-size:12px;color:var(--muted)}
+.unit b{font-weight:600}
+.unit .ua{font-family:var(--display);font-weight:700;font-size:17px}
+.unit .ua sub{font-family:var(--sans);font-size:11px;color:var(--muted);vertical-align:baseline}
+.unit.active{background:var(--card2);border-color:rgba(255,160,70,.5)}
+.unit.active .ul{background:var(--grad);color:#1a0e04}
+.viewer{display:grid;grid-template-columns:1.05fr 1fr;border-radius:32px;overflow:hidden;background:var(--card);border:1px solid var(--line);min-height:560px}
+.v-img{position:relative;background:#000;cursor:zoom-in;overflow:hidden}
+.v-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:opacity .35s,transform 1s}
+.v-img:hover img{transform:scale(1.04)}
+.v-img .zoom-hint{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(10,12,11,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;font-weight:600}
+.v-body{display:flex;flex-direction:column;gap:26px;padding:34px}
+.v-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px 16px}
+.v-top h3{font-size:clamp(28px,2.6vw,38px);white-space:nowrap}
+.v-top .pill{margin-top:12px;display:inline-block}
+.v-area{text-align:right}
+.v-area b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(36px,3.6vw,52px);line-height:.95;letter-spacing:-.04em;white-space:nowrap}
+.v-area span{font-size:13px;color:var(--muted)}
+.bars{list-style:none;display:flex;flex-direction:column;gap:14px}
+.bars li{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:14px}
+.bars li span{color:#d4dad6}
+.bars li b{font-family:var(--display);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.bars li i{grid-column:1/-1;height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.bars li i::after{content:"";display:block;height:100%;width:var(--w);border-radius:inherit;background:var(--grad);transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.v-cta{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
+.v-cta .btn{flex:1 1 200px}
+.fade-swap{animation:swap .45s ease both}
+@keyframes swap{from{opacity:0;transform:translateY(10px)}}
+@media(max-width:1080px){.viewer{grid-template-columns:1fr}.v-img{aspect-ratio:4/4}.viewer{min-height:0}}
+@media(max-width:860px){
+  .config{grid-template-columns:1fr}
+  .unit-list{position:static;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding:2px 20px 8px;scrollbar-width:none}
+  .unit-list::-webkit-scrollbar{display:none}
+  .unit{flex:0 0 auto;width:auto;scroll-snap-align:start;grid-template-columns:44px auto;padding:8px 16px 8px 8px}
+  .unit .ul{width:44px;height:44px;font-size:17px}
+  .unit .ua{display:none}
+  .unit:hover{transform:none}
+  .v-body{padding:26px 22px}
+}
+
+/* ---------- location ---------- */
+.loc-hero{position:relative;border-radius:32px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in}
+.loc-hero img{width:100%;min-height:260px;object-fit:cover}
+.loc-grid{display:grid;grid-template-columns:1.1fr repeat(3,1fr);gap:16px;margin-top:16px}
+.loc{padding:26px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.loc .dist{font-family:var(--display);font-weight:800;font-size:clamp(34px,3.6vw,46px);letter-spacing:-.04em;line-height:1}
+.loc span{color:var(--muted);font-size:14px;line-height:1.45}
+.loc.addr{background:radial-gradient(400px 220px at 0% 100%,rgba(255,140,50,.25),transparent 70%),var(--card2)}
+.loc.addr small{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.loc.addr p{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.25;margin-top:10px;letter-spacing:-.01em}
+@media(max-width:1000px){.loc-grid{grid-template-columns:1fr 1fr}.loc.addr{grid-column:1/-1}}
+@media(max-width:520px){.loc-grid{grid-template-columns:1fr}}
+
+/* ---------- final cta ---------- */
+.final{position:relative;overflow:hidden;border-radius:40px;padding:clamp(40px,7vw,96px);background:var(--grad);color:#1a0e04;isolation:isolate}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/hero.jpg) right 30%/cover no-repeat;opacity:.18;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000);mask-image:linear-gradient(90deg,transparent 30%,#000)}
+.final h2{font-size:clamp(40px,7vw,96px);font-weight:800;letter-spacing:-.05em;line-height:.92;max-width:900px}
+.final p{max-width:520px;font-size:18px;margin:22px 0 36px;color:rgba(26,14,4,.78)}
+.phones{display:flex;flex-wrap:wrap;gap:12px}
+.phone{display:flex;align-items:center;gap:16px;padding:12px 26px 12px 12px;border-radius:999px;background:#120b05;color:#fff;transition:transform .25s}
+.phone:hover{transform:translateY(-3px)}
+.phone .pi{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--grad);color:#1a0e04}
+.phone small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a99a8b}
+.phone b{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:.02em}
+
+footer{padding:56px 0 calc(48px + env(safe-area-inset-bottom,0px))}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding-top:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.foot a:hover{color:var(--text)}
+
+/* mobile call bar */
+.callbar{display:none}
+@media(max-width:700px){
+  .callbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;display:grid;grid-template-columns:52px 1fr;gap:8px;padding:6px;border-radius:999px;background:rgba(16,20,18,.9);border:1px solid var(--line2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 20px 50px -10px rgba(0,0,0,.7);transform:translateY(150%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .callbar.show{transform:none}
+  .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:999px;font-weight:700}
+  .callbar .map{background:rgba(255,255,255,.08);color:var(--amber)}
+  .callbar .call{background:var(--grad);color:#1a0e04}
+  footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,6,6,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.3s}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-width:min(100%,1100px);max-height:86vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:scale(.96);transition:transform .3s}
+.lb.open img{transform:none}
+.lb-btn{position:absolute;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);transition:background .2s}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+.lb-btn svg{width:22px;height:22px}
+.lb-close{top:calc(18px + env(safe-area-inset-top,0px));right:18px}
+.lb-prev{left:18px}.lb-next{right:18px}
+.lb-count{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.1em}
+@media(max-width:700px){.lb-prev,.lb-next{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px))}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M9 7h8v8"/></symbol>
+</svg>
+
+<header id="hdr">
+  <div class="wrap">
+    <div class="nav">
+      <a href="#top" class="logo" aria-label="Төгөл Апартмент — нүүр"><span class="logo-mark">Т</span><span>ТӨГӨЛ<small>АПАРТМЕНТ</small></span></a>
+      <nav aria-label="Үндсэн цэс">
+        <ul class="menu" id="menu">
+          <li><a href="#why">Давуу тал</a></li>
+          <li><a href="#quality">Барилгын чанар</a></li>
+          <li><a href="#plans">Байрны төрөл</a></li>
+          <li><a href="#location">Байршил</a></li>
+          <li><a href="#contact">Холбоо барих</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-amber nav-cta" href="tel:99928898"><svg class="ic"><use href="#i-phone"/></svg>99928898</a>
+      <button class="burger" id="burger" aria-label="Цэс нээх" aria-expanded="false" aria-controls="menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-photo"><img src="img/hero.jpg" alt="Төгөл Апартмент барилгын гадна төрх" fetchpriority="high"></div>
+  <div class="wrap hero-inner">
+    <span class="kicker reveal in"><i></i>Арвайхээр · Өвөрхангай · Захиалга авч байна</span>
+    <h1 class="reveal in d1">ТӨГӨЛ<span class="l2">АПАРТМЕНТ</span></h1>
+    <div class="hero-row">
+      <div class="reveal in d2">
+        <p class="lead">Хотын төвд, <b>тав тухтай амьдрах бүрэн боломж.</b> Тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц.</p>
+        <div class="cta">
+          <a class="btn btn-amber" href="tel:99928898"><svg class="ic"><use href="#i-phone"/></svg>Захиалга өгөх</a>
+          <a class="btn btn-glass" href="#plans">Байрнууд үзэх<span class="arrow"><svg class="ic" style="width:16px;height:16px"><use href="#i-arrow"/></svg></span></a>
+        </div>
+      </div>
+      <div class="glass-stack reveal in d3">
+        <div class="glass"><span class="gi">30%</span><div><b>Урьдчилгаа</b><span>Төлбөрийн уян хатан нөхцөл</span></div></div>
+        <div class="glass"><span class="gi">⇄</span><div><b>Бартер</b><span>Оролцуулах боломжтой</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"></div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>50 айлын шинэ орон сууц</span><span>Урьдчилгаа 30%</span><span>Бартер оролцуулах боломжтой</span><span>Арвайхээр · А бүс</span><span>Бүрэн цутгамал барилга</span><span>46–79 м²</span>
+    <span>50 айлын шинэ орон сууц</span><span>Урьдчилгаа 30%</span><span>Бартер оролцуулах боломжтой</span><span>Арвайхээр · А бүс</span><span>Бүрэн цутгамал барилга</span><span>46–79 м²</span>
+  </div>
+</div>
+
+<!-- WHY / BENTO -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal"><span class="kicker"><i></i>Захиалга авч байна</span><h2>50 айлын шинэ орон сууцандаа <span class="grad-text">захиалга авч байна</span></h2></div>
+      <p class="reveal d1">Тав тухтай байршил, өндөр чанар, орчны тохижилт, төлбөрийн уян хатан нөхцөл.</p>
+    </div>
+    <div class="bento">
+      <figure class="tile t-img reveal" data-lb="img/promo-50.jpg">
+        <img src="img/promo-50.jpg" alt="Тун удахгүй ашиглалтад орох 50 айлын орон сууц" loading="lazy">
+        <figcaption class="t-cap">Борлуулалт: 99928898, 95897513<span class="zoom-dot"><svg class="ic"><use href="#i-zoom"/></svg></span></figcaption>
+      </figure>
+      <div class="tile t-stat big reveal d1">
+        <div class="badge-row"><span class="pill hot">Шинэ төсөл</span><span class="pill">Тун удахгүй ашиглалтад орно</span></div>
+        <div class="lbl"><div class="num"><span class="count" data-to="50">50</span></div><div><b>айлын орон сууц</b>Арвайхээр хотын А бүс</div></div>
+      </div>
+      <div class="t-half">
+        <div class="tile reveal d2"><div class="mini-num grad-text"><span class="count" data-to="30">30</span>%</div><div class="mini-lbl">урьдчилгаа төлбөр · бартер боломжтой</div></div>
+        <div class="tile reveal d3"><div class="mini-num">46–79</div><div class="mini-lbl">м² талбайн сонголт · 1 ба 2 өрөө</div></div>
+      </div>
+      <figure class="tile t-img t-wide reveal" data-lb="img/promo-30.jpg">
+        <img src="img/promo-30.jpg" alt="Урьдчилгаа 30%, бартер оролцуулах боломжтой" loading="lazy">
+        <figcaption class="t-cap">Урьдчилгаа 30% · Бартер оролцуулах боломжтой<span class="zoom-dot"><svg class="ic"><use href="#i-zoom"/></svg></span></figcaption>
+      </figure>
+      <div class="tile t-list reveal d1">
+        <span class="kicker"><i></i>Яагаад Төгөл</span>
+        <ul>
+          <li><b>Тав тухтай байршил</b><span>Хотын төвтэй ойр, бүх үйлчилгээг нэг дор</span></li>
+          <li><b>Өндөр чанар</b><span>Бүрэн цутгамал барилга, орчин үеийн шийдэл</span></li>
+          <li><b>Орчны тохижилт</b><span>Тав тухтай амьдрах бүрэн боломж</span></li>
+          <li><b>Төлбөрийн уян хатан нөхцөл</b><span>Урьдчилгаа 30%, бартер боломжтой</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section id="quality" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal"><span class="kicker"><i></i>Барилгын чанар</span><h2>Орон сууц авахад зөвхөн өнгө үзэмж чухал гэж үү?</h2></div>
+      <p class="reveal d1">Таны болон таны гэр бүлийн аюулгүй байдал, тав тухтай амьдрах баталгаа нь Барилгын Чанар юм.</p>
+    </div>
+    <div class="q-grid">
+      <article class="q reveal">
+        <span class="q-n">01</span>
+        <span class="q-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></span>
+        <h3>Бүрэн цутгамал бүтээц</h3>
+        <p>Газар хөдлөлтөд хамгийн тэсвэртэй, бат бэх нэг цул бүтэц. Дуу чимээ болон дулаан алдагдлыг дээд цэгт нь бууруулна.</p>
+      </article>
+      <article class="q reveal d1">
+        <span class="q-n">02</span>
+        <span class="q-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18M4 12h16"/></svg></span>
+        <h3>3 давхар шилтэй, вакуум цонх</h3>
+        <p>Шил хоорондын аргон хий болон Low-E бүрхүүл нь өвөлдөө дулааныг хадгалж, зундаа халуун агаарыг оруулдаггүй. Хотын дуу шуугианаас бүрэн тусгаарлана.</p>
+      </article>
+      <article class="q reveal d2">
+        <span class="q-n">03</span>
+        <span class="q-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>Дулаалгын ухаалаг шийдэл</h3>
+        <p>Хана дангаараа биш, материалын чанар болон угсралтын зөв технологи (дулааны гүүргүй шийдэл) нь таны гэрийг жилийн дөрвөн улиралд тухтай байлгана.</p>
+      </article>
+    </div>
+    <div class="quote reveal">
+      <span class="qm" aria-hidden="true">“</span>
+      <div><b>Бид ихэнхдээ орон сууц сонгохдоо дотоод зохион байгуулалт, гадна тохижилтыг чухалчилдаг.</b><p>«Төгөл апартмент» нь оршин суугчдадаа чанарын дээдийг амлахын тулд дээрх инженерчлэлийн шийдлүүдийг цогцлоолоо.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="plans-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal"><span class="kicker"><i></i>Байрны төрөл</span><h2>Таны амьдралд <span class="grad-text">тохирсон сууц</span></h2></div>
+      <div class="filters reveal d1" id="filters" role="tablist" aria-label="Унтлагын өрөөний тоогоор шүүх">
+        <button class="filter active" data-f="all" role="tab" aria-selected="true">Бүгд</button>
+        <button class="filter" data-f="1" role="tab" aria-selected="false">1 унтлагын</button>
+        <button class="filter" data-f="2" role="tab" aria-selected="false">2 унтлагын</button>
+      </div>
+    </div>
+    <div class="config reveal">
+      <div class="unit-list" id="units" aria-label="Сууцны төрлүүд"></div>
+      <div class="viewer" id="viewer" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal"><span class="kicker"><i></i>Байршил</span><h2>Арвайхээр сумын <span class="grad-text">А бүс</span></h2></div>
+      <p class="reveal d1">Бүх төрлийн үйлчилгээ, боловсрол, засаг захиргааны байгууллагуудтай ойрхон байрлалтай.</p>
+    </div>
+    <div class="loc-hero reveal" data-lb="img/location.jpg"><img src="img/location.jpg" alt="Төгөл Апартмент байршил, Арвайхээр" loading="lazy"></div>
+    <div class="loc-grid">
+      <div class="loc addr reveal">
+        <div><small>Хаяг</small><p>Өвөрхангай аймаг, Арвайхээр сум, А бүс</p></div>
+        <a class="btn btn-amber" style="align-self:flex-start;height:50px" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%90%D1%80%D0%B2%D0%B0%D0%B9%D1%85%D1%8D%D1%8D%D1%80%20%D0%90%20%D0%B1%D2%AF%D1%81%2C%20%D3%A8%D0%B2%D3%A9%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B0%D0%B9%2C%20%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Газрын зураг</a>
+      </div>
+      <div class="loc reveal d1"><div class="dist">300<span class="grad-text"> м</span></div><span>Мэргэд сургууль</span></div>
+      <div class="loc reveal d2"><div class="dist">800<span class="grad-text"> м</span></div><span>Арвайхээр сумын Нутгийн удирдлагын ордон</span></div>
+      <div class="loc reveal d3"><div class="dist">1<span class="grad-text"> км</span></div><span>Арвайхээр сумын Политехник коллеж</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="final reveal">
+      <h2>Шинэ гэрээ өнөөдөр сонгоорой</h2>
+      <p>Тун удахгүй ашиглалтад орох 50 айлын орон сууцандаа захиалга авч байна. Залгаад дэлгэрэнгүй мэдээлэл аваарай.</p>
+      <div class="phones">
+        <a class="phone" href="tel:99928898"><span class="pi"><svg class="ic"><use href="#i-phone"/></svg></span><span><small>Борлуулалт</small><b>9992 8898</b></span></a>
+        <a class="phone" href="tel:95897513"><span class="pi"><svg class="ic"><use href="#i-phone"/></svg></span><span><small>Нэмэлт утас</small><b>9589 7513</b></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="logo" aria-label="Дээш буцах"><span class="logo-mark">Т</span><span>ТӨГӨЛ<small>АПАРТМЕНТ</small></span></a>
+    <span>© Төгөл Апартмент · Арвайхээр, Өвөрхангай</span>
+    <span><a href="tel:99928898">99928898</a> · <a href="tel:95897513">95897513</a></span>
+  </div>
+</footer>
+
+<div class="callbar" id="callbar">
+  <a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%90%D1%80%D0%B2%D0%B0%D0%B9%D1%85%D1%8D%D1%8D%D1%80%20%D0%90%20%D0%B1%D2%AF%D1%81%2C%20%D3%A8%D0%B2%D3%A9%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B0%D0%B9%2C%20%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB" target="_blank" rel="noopener" aria-label="Газрын зураг"><svg class="ic"><use href="#i-pin"/></svg></a>
+  <a class="call" href="tel:99928898"><svg class="ic"><use href="#i-phone"/></svg>Залгах · 99928898</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Зураг томруулж харах">
+  <img alt="">
+  <button class="lb-btn lb-close" data-a="close" aria-label="Хаах"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-btn lb-prev" data-a="prev" aria-label="Өмнөх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="lb-btn lb-next" data-a="next" aria-label="Дараах"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+
+<script>
+const plans = [
+ {k:'A',area:'52.50',br:1,img:'plan-a-52.jpg',rooms:[['Гал тогоо, зочны өрөө','27.34'],['Унтлагын өрөө','14.16'],['Ариун цэврийн өрөө','4.72'],['Үүдний өрөө','4.30'],['Тагт','1.98']]},
+ {k:'B',area:'46.27',br:1,img:'plan-b-46.jpg',rooms:[['Гал тогоо, зочны өрөө','24.95'],['Унтлагын өрөө','8.85'],['Ариун цэврийн өрөө','4.96'],['Үүдний өрөө','6.55'],['Тагт','0.96']]},
+ {k:'C',area:'56.15',br:1,img:'plan-c-56.jpg',rooms:[['Гал тогоо, зочны өрөө','33.67'],['Унтлагын өрөө','9.90'],['Ариун цэврийн өрөө','4.44'],['Үүдний өрөө','7.18'],['Тагт','0.96']]},
+ {k:'D',area:'50.39',br:1,img:'plan-d-50.jpg',rooms:[['Гал тогоо, зочны өрөө','28.85'],['Унтлагын өрөө','9.47'],['Ариун цэврийн өрөө','4.96'],['Үүдний өрөө','6.15'],['Тагт','0.96']]},
+ {k:'E',area:'49.35',br:1,img:'plan-e-49.jpg',rooms:[['Гал тогоо, зочны өрөө','27.98'],['Унтлагын өрөө','9.18'],['Ариун цэврийн өрөө','4.93'],['Үүдний өрөө','6.30'],['Тагт','0.96']]},
+ {k:'B',area:'73.34',br:2,img:'plan-b-73.jpg',rooms:[['Гал тогоо, зочны өрөө','36.92'],['Унтлагын өрөө','8.85'],['Унтлагын өрөө','15.10'],['Ариун цэврийн өрөө','4.96'],['Үүдний өрөө','6.55']]},
+ {k:'A',area:'78.76',br:2,img:'plan-a-78.jpg',rooms:[['Гал тогоо, зочны өрөө','32.11'],['Унтлагын өрөө','8.85'],['Унтлагын өрөө','21.84'],['Ариун цэврийн өрөө','4.72'],['Ариун цэврийн өрөө','4.96'],['Үүдний өрөө','4.30'],['Тагт','1.98']]}
+];
+
+// ---------- plan configurator ----------
+const unitsEl=document.getElementById('units'),viewer=document.getElementById('viewer');
+let filter='all',current=0;
+const visible=()=>plans.map((p,i)=>({...p,i})).filter(p=>filter==='all'||String(p.br)===filter);
+function renderUnits(){
+  unitsEl.innerHTML=visible().map(p=>`
+    <button class="unit${p.i===current?' active':''}" data-i="${p.i}" aria-pressed="${p.i===current}">
+      <span class="ul">${p.k}</span>
+      <span><b>${p.k} сууц</b><small>${p.br} унтлагын өрөө</small></span>
+      <span class="ua">${p.area}<sub> м²</sub></span>
+    </button>`).join('');
+}
+function renderViewer(){
+  const p=plans[current],max=Math.max(...p.rooms.map(r=>+r[1]));
+  viewer.innerHTML=`
+    <div class="v-img" data-lb="img/${p.img}" role="button" tabindex="0" aria-label="${p.k} сууцны зургийг томруулах">
+      <img src="img/${p.img}" alt="${p.k} сууц, ${p.area} м² төлөвлөлт">
+      <span class="zoom-hint"><svg class="ic" style="width:15px;height:15px"><use href="#i-zoom"/></svg>Томруулж үзэх</span>
+    </div>
+    <div class="v-body fade-swap">
+      <div class="v-top">
+        <div><h3>${p.k} сууц</h3><span class="pill hot">${p.br} унтлагын өрөө</span></div>
+        <div class="v-area"><b>${p.area}</b><span>нийт м²</span></div>
+      </div>
+      <ul class="bars">${p.rooms.map(r=>`<li><span>${r[0]}</span><b>${r[1]} м²</b><i style="--w:${(r[1]/max*100).toFixed(1)}%"></i></li>`).join('')}</ul>
+      <div class="v-cta">
+        <a class="btn btn-amber" href="tel:99928898" aria-label="${p.k} сууц ${p.area} м² захиалах: 99928898"><svg class="ic"><use href="#i-phone"/></svg>Энэ сууцыг захиалах</a>
+        <a class="btn btn-glass" href="tel:95897513">95897513</a>
+      </div>
+    </div>`;
+}
+unitsEl.addEventListener('click',e=>{const b=e.target.closest('.unit');if(!b)return;current=+b.dataset.i;renderUnits();renderViewer();
+  if(innerWidth<=860)viewer.scrollIntoView({behavior:'smooth',block:'nearest'})});
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.filter');if(!b)return;filter=b.dataset.f;
+  document.querySelectorAll('.filter').forEach(t=>{t.classList.toggle('active',t===b);t.setAttribute('aria-selected',t===b)});
+  if(!visible().some(p=>p.i===current))current=visible()[0].i;
+  renderUnits();renderViewer();
+});
+renderUnits();renderViewer();
+
+// ---------- lightbox ----------
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbc=document.getElementById('lb-count');
+let list=[],idx=0;
+function show(i){idx=(i+list.length)%list.length;lbi.src=list[idx];lbc.textContent=list.length>1?`${idx+1} / ${list.length}`:''}
+function openLb(src){list=[...new Set([...document.querySelectorAll('[data-lb]')].map(x=>x.dataset.lb).concat(plans.map(p=>'img/'+p.img)))];show(list.indexOf(src));lb.classList.add('open');document.body.style.overflow='hidden'}
+function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('click',e=>{
+  const z=e.target.closest('[data-lb]');if(z){openLb(z.dataset.lb);return}
+  if(!lb.classList.contains('open'))return;
+  const a=e.target.closest('[data-a]')?.dataset.a;
+  if(a==='prev')show(idx-1);else if(a==='next')show(idx+1);else if(e.target!==lbi)closeLb();
+});
+document.addEventListener('keydown',e=>{
+  if(lb.classList.contains('open')){if(e.key==='Escape')closeLb();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)}
+  else if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-lb]')){e.preventDefault();openLb(e.target.dataset.lb)}
+});
+
+// ---------- header, progress, call bar, menu ----------
+const hdr=document.getElementById('hdr'),cb=document.getElementById('callbar'),pr=document.getElementById('progress'),burger=document.getElementById('burger');
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;pr.style.transform=`scaleX(${h>0?scrollY/h:0})`;hdr.classList.toggle('solid',scrollY>30);cb.classList.toggle('show',scrollY>innerHeight*.6)}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+burger.addEventListener('click',()=>{const o=document.body.classList.toggle('menu-open');burger.setAttribute('aria-expanded',o)});
+document.getElementById('menu').addEventListener('click',e=>{if(e.target.closest('a')){document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded',false)}});
+
+// ---------- reveal + count-up ----------
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function countUp(el){const to=+el.dataset.to;if(reduce){el.textContent=to;return}const t0=performance.now(),d=1400;
+  (function f(t){const k=Math.min(1,(t-t0)/d);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;x.target.classList.add('in');x.target.querySelectorAll('.count').forEach(countUp);io.unobserve(x.target)}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
