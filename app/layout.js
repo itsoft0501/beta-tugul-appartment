@@ -32,12 +32,8 @@ export default function RootLayout({ children }) {
     <html lang="mn">
       <head>
         <link rel="preload" as="image" href="/img/hero.jpg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/URWGeometric-Regular.woff2" crossOrigin="" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/URWGeometric-ExtraBold.woff2" crossOrigin="" />
       </head>
       <body>{children}</body>
     </html>
