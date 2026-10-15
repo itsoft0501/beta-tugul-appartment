@@ -6,8 +6,8 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow reveal in">Арвайхээр · Өвөрхангай</span>
-          <h1 className="reveal in d1">Хотын төвд <em>тав тухтай</em> амьдрал</h1>
+          <span className="eyebrow reveal in">Өвөрхангай аймаг · Арвайхээр</span>
+          <h1 className="reveal in d1">Арвайхээрт <em>тав тухтай</em> шинэ гэр</h1>
           <p className="lead reveal in d2"><b>Төгөл Апартмент</b> — тун удахгүй ашиглалтад орох 50 айлын шинэ орон сууц. Урьдчилгаа 30%, бартер оролцуулах боломжтой.</p>
           <div className="cta reveal in d2">
             <a className="btn btn-primary" href={`tel:${PHONE}`}><Icon id="i-phone" />Захиалга өгөх</a>
