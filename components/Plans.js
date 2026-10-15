@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { Icon } from './Icons';
 import { Zoomable } from './Lightbox';
+import Plan3D from './Plan3D';
 import { PHONE, PHONE2, plans } from '@/data/plans';
 
 const filters = [
@@ -14,6 +15,7 @@ const filters = [
 export default function Plans() {
   const [filter, setFilter] = useState('all');
   const [current, setCurrent] = useState(0);
+  const [view, setView] = useState('3d');
   const viewer = useRef(null);
 
   const visible = plans
@@ -58,10 +60,21 @@ export default function Plans() {
             ))}
           </div>
           <div className="viewer" ref={viewer} aria-live="polite">
-            <Zoomable className="v-img" src={`/img/${p.img}`} label={`${p.k} сууцны зургийг томруулах`} key={`img-${current}`}>
-              <img src={`/img/${p.img}`} alt={`${p.k} сууц, ${p.area} м² төлөвлөлт`} />
-              <span className="zoom-hint"><Icon id="i-zoom" style={{ width: 15, height: 15 }} />Томруулж үзэх</span>
-            </Zoomable>
+            <div className="v-img">
+              <div className="v-tabs" role="tablist" aria-label="Харах хэлбэр">
+                {[['3d', '3D төлөвлөлт'], ['img', 'Зураг']].map(([v, t]) => (
+                  <button key={v} role="tab" aria-selected={view === v} className={view === v ? 'on' : undefined} onClick={() => setView(v)}>{t}</button>
+                ))}
+              </div>
+              {view === '3d' ? (
+                <Plan3D plan={p} key={`3d-${current}`} />
+              ) : (
+                <Zoomable className="v-photo" src={`/img/${p.img}`} label={`${p.k} сууцны зургийг томруулах`} key={`img-${current}`}>
+                  <img src={`/img/${p.img}`} alt={`${p.k} сууц, ${p.area} м² төлөвлөлт`} />
+                  <span className="zoom-hint"><Icon id="i-zoom" style={{ width: 15, height: 15 }} />Томруулж үзэх</span>
+                </Zoomable>
+              )}
+            </div>
             <div className="v-body fade-swap" key={`body-${current}`}>
               <div className="v-top">
                 <div><h3>{p.k} сууц</h3><span className="tag">{p.br} унтлагын өрөө</span></div>

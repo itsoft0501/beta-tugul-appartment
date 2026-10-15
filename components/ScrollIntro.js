@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from './Icons';
+import Plan3D from './Plan3D';
+import { plans } from '@/data/plans';
 
 const clamp = (v) => Math.min(1, Math.max(0, v));
 const seg = (p, a, b) => clamp((p - a) / (b - a));
@@ -23,6 +25,8 @@ const chips = [
 export default function ScrollIntro() {
   const sec = useRef(null);
   const r = useRef({});
+  const [built, setBuilt] = useState(false);
+  const builtRef = useRef(false);
 
   useEffect(() => {
     const el = r.current;
@@ -82,7 +86,12 @@ export default function ScrollIntro() {
 
       const roomIn = seg(p, 0.56, 0.66);
       el.room.style.opacity = roomIn;
-      el.room.style.transform = `scale(${1.5 - 0.5 * C}) rotateX(${10 * (1 - C)}deg)`;
+      el.room.style.transform = `scale(${1.35 - 0.35 * C})`;
+      const wantBuilt = p > 0.66;
+      if (wantBuilt !== builtRef.current) {
+        builtRef.current = wantBuilt;
+        setBuilt(wantBuilt);
+      }
       el.room.style.filter = `blur(${(1 - seg(p, 0.58, 0.76)) * 6}px)`;
 
       const e = seg(p, 0.8, 0.9);
@@ -138,7 +147,7 @@ export default function ScrollIntro() {
         </div>
         <div className="intro-flash" ref={set('flash')} />
         <div className="intro-room" ref={set('room')}>
-          <img src="/img/plan-c-56.jpg" alt="" />
+          <Plan3D plan={plans[2]} built={built} interactive={false} fill={0.8} />
         </div>
         <div className="intro-title" ref={set('title')}>
           <span className="eyebrow">Өвөрхангай аймаг · Арвайхээр</span>
